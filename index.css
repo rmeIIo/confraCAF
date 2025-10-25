@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: hsl(42, 25%, 96%);
+  --foreground: hsl(215, 25%, 20%);
+  --primary: hsl(215, 45%, 25%);
+  --primary-foreground: hsl(42, 25%, 96%);
+  --secondary: hsl(42, 35%, 88%);
+  --accent: hsl(38, 45%, 55%);
+  --paper: hsl(42, 30%, 95%);
+  --paper-shadow: hsl(215, 25%, 60%);
+  --seal: hsl(0, 75%, 45%);
+  --seal-gold: hsl(38, 65%, 50%);
+  --border: hsl(215, 15%, 85%);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+@keyframes letterSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stampBounce {
+  0%,
+  100% {
+    transform: rotate(12deg) scale(1);
+  }
+  50% {
+    transform: rotate(12deg) scale(1.05);
+  }
+}
+
+@keyframes sealSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes confirmPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  aspect-ratio: 3/2;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  background-color: var(--paper);
+  border: 2px solid rgba(34, 51, 84, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.envelope-icon {
+  color: rgba(34, 51, 84, 0.3);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.envelope-flap.opening {
+  animation: envelopeOpen 1s ease-out forwards;
+}
+
+.seal {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--seal-gold);
+  border: 4px solid var(--primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.protocol-stamp {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(176, 31, 31, 0.1);
+  border: 2px solid var(--seal);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  transform: rotate(12deg);
+  animation: stampBounce 2s ease-in-out infinite;
+}
+
+.protocol-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--seal);
+  text-transform: uppercase;
+}
+
+.protocol-number {
+  font-size: 0.625rem;
+  color: rgba(176, 31, 31, 0.8);
+}
